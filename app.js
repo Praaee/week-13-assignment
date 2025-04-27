@@ -4,21 +4,21 @@ const port = 3000;
 
 app.use(express.json());
 
-// In-memory array to store students
+
 let students = [];
 let nextId = 1;
 
-// GET / - Welcome message
+
 app.get('/', (req, res) => {
   res.send('Welcome to the Students API!');
 });
 
-// GET /student - Get all students
+
 app.get('/student', (req, res) => {
   res.json(students);
 });
 
-// GET /student/:id - Get a student by ID
+
 app.get('/student/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const student = students.find(s => s.id === id);
@@ -29,7 +29,7 @@ app.get('/student/:id', (req, res) => {
   }
 });
 
-// POST /student - Add a new student
+
 app.post('/student', (req, res) => {
   const { name } = req.body;
   if (!name) {
@@ -40,7 +40,7 @@ app.post('/student', (req, res) => {
   res.status(201).json(newStudent);
 });
 
-// PUT /student/:id - Update a student by ID
+
 app.put('/student/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { name } = req.body;
@@ -53,7 +53,7 @@ app.put('/student/:id', (req, res) => {
   }
 });
 
-// DELETE /student/:id - Delete a student by ID
+
 app.delete('/student/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const index = students.findIndex(s => s.id === id);
@@ -65,7 +65,7 @@ app.delete('/student/:id', (req, res) => {
   }
 });
 
-// Start the server
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
